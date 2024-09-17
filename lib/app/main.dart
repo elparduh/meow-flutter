@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meow_generator/app/di/service_locator.dart';
+import 'package:meow_generator/feature/domain/usecase/get_cat_image_usecase.dart';
 
 void main() {
   initializeLocator();
@@ -28,6 +29,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('TEST COMMIT ');
+    final useCase = locator<GetCatImageUseCase>();
+    useCase.fetchCatImage()
+        .then((catImage) => print(catImage))
+        .catchError((e) => print(e.toString()));
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
