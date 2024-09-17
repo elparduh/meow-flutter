@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:meow_generator/core/extension/strings.dart';
 
 class CatImage extends Equatable {
   const CatImage({
@@ -8,6 +9,11 @@ class CatImage extends Equatable {
 
   final String id;
   final String url;
+
+  static CatImage empty() => const CatImage(
+    id: '',
+    url: '',
+  );
 
   @override
   List<Object?> get props => [id, url];
