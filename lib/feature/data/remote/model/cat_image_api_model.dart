@@ -1,7 +1,7 @@
-import 'package:meow_generator/feature/domain/model/image_cat_model.dart';
+import 'package:meow_generator/feature/domain/model/cat_image_model.dart';
 
-class ImageCatApiResponse {
-  const ImageCatApiResponse({
+class CatImageApiResponse {
+  const CatImageApiResponse({
     this.id,
     this.url,
     this.width,
@@ -13,8 +13,8 @@ class ImageCatApiResponse {
   final int? width;
   final int? height;
 
-  factory ImageCatApiResponse.fromJson(Map<String, dynamic> json) =>
-      ImageCatApiResponse(
+  factory CatImageApiResponse.fromJson(Map<String, dynamic> json) =>
+      CatImageApiResponse(
         id: json['id'],
         url: json['url'],
         width: json['width'],
@@ -22,8 +22,8 @@ class ImageCatApiResponse {
       );
 }
 
-extension ImageCatApiResponseX on ImageCatApiResponse {
-  toImageCat() => ImageCat(
+extension CatImageApiResponseX on CatImageApiResponse {
+  toCatImage() => CatImage(
         id: id ?? '',
         url: url ?? '',
       );

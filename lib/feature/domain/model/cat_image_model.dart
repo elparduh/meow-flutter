@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class ImageCat extends Equatable {
-  const ImageCat({
+class CatImage extends Equatable {
+  const CatImage({
     required this.id,
     required this.url,
   });
@@ -10,5 +10,5 @@ class ImageCat extends Equatable {
   final String url;
 
   @override
-  List<Object?> get props => [url];
+  List<Object?> get props => [id, url];
 }
