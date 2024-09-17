@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:meow_generator/app/di/service_locator.dart';
 
 void main() {
+  initializeLocator();
   runApp(const MyApp());
 }
 
