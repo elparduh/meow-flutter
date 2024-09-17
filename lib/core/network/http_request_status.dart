@@ -8,10 +8,6 @@ class SuccessfulRequest extends HttpRequestStatus {
   const SuccessfulRequest() : super('Success');
 }
 
-class SuccessfulNoContentRequest extends HttpRequestStatus {
-  const SuccessfulNoContentRequest() : super('Success with not content');
-}
-
 class BadRequest extends HttpRequestStatus {
   const BadRequest() : super('Bad request');
 }
@@ -43,5 +39,5 @@ class Unknown extends HttpRequestStatus {
 
 
 extension HttpRequestStatusX on HttpRequestStatus {
-  hasErrors() => this is! SuccessfulRequest || this is! SuccessfulNoContentRequest;
+  hasErrors() => this is! SuccessfulRequest;
 }
