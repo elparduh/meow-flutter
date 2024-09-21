@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meow_generator/app/di/service_locator.dart';
-import 'package:meow_generator/feature/domain/usecase/get_cat_image_usecase.dart';
 
 void main() {
   initializeLocator();
@@ -14,7 +13,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -29,17 +27,46 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('TEST COMMIT ');
-    final useCase = locator<GetCatImageUseCase>();
-    useCase.fetchCatImage()
-        .then((catImage) => print(catImage))
-        .catchError((e) => print(e.toString()));
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Cat generator'),
+        title: const Text('MEOW'),
       ),
-      body: const Placeholder(),
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 460,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(64)),
+                    child: Image.asset(
+                      'assets/images/haku.jpg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    side: const BorderSide(
+                      color: Colors.black,
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: const Text('Generar imagen'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
