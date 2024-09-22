@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meow_generator/app/di/service_locator.dart';
+import 'package:meow_generator/core/theme/theme.dart';
 
 void main() {
   initializeLocator();
@@ -13,10 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: const HomeScreen(),
     );
   }
@@ -54,10 +53,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    side: const BorderSide(
-                      color: Colors.black,
-                    ),
+                    side: const BorderSide(),
                   ),
                   onPressed: () {},
                   child: const Text('Generar imagen'),
