@@ -34,35 +34,44 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 460,
-                  width: double.infinity,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(64)),
-                    child: Image.asset(
-                      'assets/images/haku.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(),
-                  ),
-                  onPressed: () {},
-                  child: const Text('Generar imagen'),
-                ),
-              ],
-            ),
+          child: const SingleChildScrollView(
+            child: _HomeView(),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _HomeView extends StatelessWidget {
+  const _HomeView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 460,
+          width: double.infinity,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(64)),
+            child: Image.asset(
+              'assets/images/haku.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 24,
+        ),
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: const BorderSide(),
+          ),
+          onPressed: () {},
+          child: const Text('Generar imagen'),
+        ),
+      ],
     );
   }
 }
