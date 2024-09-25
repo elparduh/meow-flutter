@@ -18,6 +18,7 @@ class CatImageBloc extends Bloc<CatImageEvent, CatImageState> {
   _onLoadCatImage(LoadCatImageEvent event, Emitter<CatImageState> emit) async {
     emit(state.onLoadingUI());
 
+    await Future.delayed(const Duration(milliseconds: 300));
     await _getCatImageUseCase
         .fetchCatImage()
         .then((catImage) => emit(state.onSuccessUI(catImage.toCatImageUi())))

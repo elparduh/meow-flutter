@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:meow_generator/core/network/http_request_handler.dart';
+import 'package:meow_generator/feature/bloc/cat_image_bloc.dart';
 import 'package:meow_generator/feature/data/cat_image_repository.dart';
 import 'package:meow_generator/feature/data/remote/cat_image_remote_datasource.dart';
 import 'package:http/http.dart' as http;
@@ -16,4 +17,7 @@ void registerCatImageDependencies() {
 
   _locator.registerFactory<GetCatImageUseCase>(
       () => GetCatImageUseCase(_locator<CatImageRepository>()));
+
+  _locator.registerFactory<CatImageBloc>(
+      () => CatImageBloc(_locator<GetCatImageUseCase>()));
 }
