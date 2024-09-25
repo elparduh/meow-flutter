@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meow_generator/app/di/service_locator.dart';
+import 'package:meow_generator/core/state/ui_state.dart';
 import 'package:meow_generator/core/theme/theme.dart';
+import 'package:meow_generator/feature/bloc/cat_image_bloc.dart';
+import 'package:meow_generator/feature/ui/cat_image_ui_model.dart';
 
 void main() {
   initializeLocator();
@@ -34,8 +38,11 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          child: const SingleChildScrollView(
-            child: _HomeView(),
+          child: SingleChildScrollView(
+            child: BlocProvider(
+              create: (_) => locator<CatImageBloc>(),
+              child: const _HomeView(),
+            ),
           ),
         ),
       ),
@@ -48,6 +55,7 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final catImageBloc = context.read<CatImageBloc>();
     return Column(
       children: [
         SizedBox(
@@ -55,9 +63,29 @@ class _HomeView extends StatelessWidget {
           width: double.infinity,
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(64)),
-            child: Image.asset(
-              'assets/images/haku.jpg',
-              fit: BoxFit.cover,
+            child: BlocBuilder<CatImageBloc, CatImageState>(
+              builder: (BuildContext context, CatImageState state) {
+                switch (state.catImageUiState) {
+                  case LoadingUIState():
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  case SuccessUIState(data: CatImageUi catImageUi):
+                    return Image.network(
+                      catImageUi.url,
+                      fit: BoxFit.cover,
+                    );
+                  case FailureUIState(error: String message):
+                    return Center(
+                      child: Text(message),
+                    );
+                  default:
+                    return Image.asset(
+                      'assets/images/haku.jpg',
+                      fit: BoxFit.cover,
+                    );
+                }
+              },
             ),
           ),
         ),
@@ -68,7 +96,7 @@ class _HomeView extends StatelessWidget {
           style: OutlinedButton.styleFrom(
             side: const BorderSide(),
           ),
-          onPressed: () {},
+          onPressed: () => catImageBloc.onLoadCatImageEvent(),
           child: const Text('Generar imagen'),
         ),
       ],
