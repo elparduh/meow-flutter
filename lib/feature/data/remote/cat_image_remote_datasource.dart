@@ -29,11 +29,11 @@ class CatImageRemoteDataSource {
       }
 
       final jsonDecode = json.decode(response.body);
-      final List<CatImageApiResponse> apiResponseCatImageList =
+      final List<CatImageApiResponse> catImageApiResponseList =
           List<CatImageApiResponse>.from(
               jsonDecode.map((x) => CatImageApiResponse.fromJson(x)));
 
-      return apiResponseCatImageList.first.toCatImage();
+      return catImageApiResponseList.first.toCatImage();
     } on Exception catch (e) {
       throw _httpRequestHandler.createRequestStatusFrom(e);
     }
