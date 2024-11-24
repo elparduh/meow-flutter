@@ -18,7 +18,7 @@ class CatImageRemoteDataSource {
 
   Future<CatImage> fetchCatImage() async {
     try {
-      final Uri url = Uri.parse(ApiConfig.baseUrl + ApiConfig.getPictureCat);
+      final Uri url = Uri.parse(ApiConfig.baseUrl + ApiConfig.getCatImage);
       final response =
           await _client.get(url, headers: ApiConfig.defaultHeaders);
 

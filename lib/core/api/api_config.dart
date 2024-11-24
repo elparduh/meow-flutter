@@ -6,5 +6,5 @@ abstract class ApiConfig {
     'Content-Type': 'application/json; chartset=UTF-8'
   };
 
-  static const getPictureCat = '/images/search';
+  static const getCatImage = '/images/search';
 }
